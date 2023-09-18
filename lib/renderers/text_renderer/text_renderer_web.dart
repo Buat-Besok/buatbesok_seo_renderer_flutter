@@ -1,12 +1,11 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
-import 'dart:ui' as ui;
+import 'dart:ui_web';
 
 import 'package:flutter/material.dart';
 import 'package:seo_renderer/helpers/renderer_state.dart';
 import 'package:seo_renderer/helpers/robot_detector_web.dart';
 import 'package:seo_renderer/helpers/size_widget.dart';
 import 'package:seo_renderer/renderers/text_renderer/text_renderer_style.dart';
+import 'package:universal_html/html.dart';
 
 /// A Widget to create the HtmlElement Tags from the TEXT widget.
 class TextRenderer extends StatefulWidget {
@@ -86,8 +85,7 @@ class _TextRendererState extends RendererState<TextRenderer> {
     }
 
     final viewType = 'html-text-$_text';
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(
+    platformViewRegistry.registerViewFactory(
       viewType,
       (_) => _htmlElement
         ..text = _text

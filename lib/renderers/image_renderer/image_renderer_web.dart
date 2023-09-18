@@ -1,12 +1,11 @@
-// ignore: avoid_web_libraries_in_flutter
 import 'dart:convert';
-import 'dart:html';
-import 'dart:ui' as ui;
+import 'dart:ui_web';
 
 import 'package:flutter/material.dart';
 import 'package:seo_renderer/helpers/renderer_state.dart';
 import 'package:seo_renderer/helpers/robot_detector_web.dart';
 import 'package:seo_renderer/helpers/size_widget.dart';
+import 'package:universal_html/html.dart';
 
 /// This VM import stub does nothing and only returns the child.
 class ImageRenderer extends StatefulWidget {
@@ -71,8 +70,7 @@ class _ImageRendererState extends RendererState<ImageRenderer> {
     }
 
     final viewType = 'html-image-$_src';
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(
+    platformViewRegistry.registerViewFactory(
       viewType,
       (int viewId) => ImageElement(src: _src)
         ..alt = widget.alt

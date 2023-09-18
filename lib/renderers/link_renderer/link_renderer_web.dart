@@ -1,11 +1,10 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
-import 'dart:ui' as ui;
+import 'dart:ui_web';
 
 import 'package:flutter/material.dart';
 import 'package:seo_renderer/helpers/renderer_state.dart';
 import 'package:seo_renderer/helpers/robot_detector_web.dart';
 import 'package:seo_renderer/helpers/size_widget.dart';
+import 'package:universal_html/html.dart';
 
 /// A Widget to create the HTML Tags but with Link (href) from any [Widget].
 class LinkRenderer extends StatefulWidget {
@@ -38,8 +37,7 @@ class _LinkRendererState extends RendererState<LinkRenderer> {
     }
 
     final viewType = 'html-link-${widget.href}';
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(
+    platformViewRegistry.registerViewFactory(
       viewType,
       (_) => AnchorElement(href: widget.href)
         ..text = widget.text
